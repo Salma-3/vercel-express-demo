@@ -1,20 +1,16 @@
-const express = require('express');
-const path = require('path');
+require('dotenv').config()
+const mongoose = require('mongoose')
 
-const app = express();
-
-app.get('/', (req, res) => {
-    return res.send('Express on Vercel')
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log(`Conneced to MongoDB Server...`)
+}).catch(err => {
+    console.log(err)
+    process.exit(1);
 })
+const app = require('./app');
 
-app.use(express.static('client/build'));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-})
 
 const PORT = 8080
 
 app.listen(PORT, () => console.log('Server ready on port', PORT))
 
-module.exports = app;
