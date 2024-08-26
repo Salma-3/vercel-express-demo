@@ -9,11 +9,15 @@ app.use(express.json())
 app.use(cors({ origin: '*'}))
 app.use(express.static('client/build'));
 
+app.get('/', function(req, res) {
+    return res.send('Properties Api')
+})
+
 app.get('/api/properties', require('./routes/properties'));
 
-app.get('*', function(req, res){
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-})
+// app.get('*', function(req, res){
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+// })
 
 
 module.exports = app;
