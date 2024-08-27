@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const { ORIGIN } = require('./config');
 
 
 const app = express();
 
 app.use(express.json())
-app.use(cors({ origin: '*'}))
+app.use(cors({ origin: ORIGIN }))
 
 
 app.get('/', function(req, res) {
@@ -14,4 +15,4 @@ app.get('/', function(req, res) {
 app.use('/api/properties', require('./routes/properties'));
 
 
-module.exports = app;
+export default app;

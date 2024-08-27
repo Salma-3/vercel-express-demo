@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+import { Router } from 'express';
 
 const schema = new mongoose.Schema({
     title: String,
@@ -19,9 +20,9 @@ const schema = new mongoose.Schema({
 const Property = mongoose.model('Property', schema);
 
 
-const router = require('express').Router()
+const router = Router()
 
-router.post('/', async function(req, res){
+router.post('/', async (req, res) => {
     try {
         const { title, description, image, contact} = req.body;
 
@@ -41,7 +42,7 @@ router.post('/', async function(req, res){
 })
 
 
-router.get("/", async function(req, res){
+router.get("/", async (req, res) => {
     try {
         const properties = await Property.find();
         res.json(properties);
@@ -51,7 +52,7 @@ router.get("/", async function(req, res){
 });
 
 // Route to add a review for a property
-router.post("/:id/review", async function(req, res){
+router.post("/:id/review", async (req, res) => {
     const { user, rating, comment } = req.body;
 
     try {
@@ -65,7 +66,7 @@ router.post("/:id/review", async function(req, res){
 });
 
 // Delete a property by ID
-router.delete("/:id", async function(req, res){
+router.delete("/:id", async (req, res) => {
     const propertyId = req.params.id;
 
     try {
@@ -83,4 +84,4 @@ router.delete("/:id", async function(req, res){
     }
 });
 
-module.exports = router;
+export default router;
