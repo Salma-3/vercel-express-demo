@@ -1,7 +1,7 @@
-require('dotenv').config()
+const { MONGO_URI } = require('../config');
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGO_URI).then(() => {
+mongoose.connect(MONGO_URI).then(() => {
     console.log(`Conneced to MongoDB Server...`)
 }).catch(err => {
     console.log(err)
