@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "babel src -d dist",
+    "start": "node api/index.js",
+    "build": "babel src -d api",
     "dev": "nodemon --exec babel-node src/index.js"
   },
   "keywords": [],
